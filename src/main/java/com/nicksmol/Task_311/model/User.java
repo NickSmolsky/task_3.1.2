@@ -12,7 +12,6 @@ import java.util.Set;
 @Table(name = "users")
 public class User implements UserDetails {
 
-    private String string;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,8 +39,8 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    public User(String firstName, String lastName, int age, String email) {
-        this.username = firstName;
+    public User(String username, String lastName, int age, String email) {
+        this.username = username;
         this.lastName = lastName;
         this.age = age;
         this.email = email;

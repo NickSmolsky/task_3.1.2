@@ -1,10 +1,13 @@
 package com.nicksmol.Task_311.service;
 
 import com.nicksmol.Task_311.model.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
     List<User> getAll();
 
     void save(User user);
@@ -16,4 +19,8 @@ public interface UserService {
     void delete(long id);
 
     User findByUsername(String username);
+
+    User findByEmail(String email);
+
+    UserDetails loadUserByUsername(String s) throws UsernameNotFoundException;
 }

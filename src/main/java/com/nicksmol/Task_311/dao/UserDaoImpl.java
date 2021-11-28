@@ -1,6 +1,8 @@
 package com.nicksmol.Task_311.dao;
 
 import com.nicksmol.Task_311.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,8 +12,11 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
+
+
     @PersistenceContext
     private EntityManager entityManager;
+
 
     @Override
     public List<User> getAll() {
@@ -52,6 +57,21 @@ public class UserDaoImpl implements UserDao {
         User user = entityManager.createQuery(
                         "SELECT u from User u WHERE u.username = :username", User.class).
                 setParameter("username", username).getSingleResult();
+        return user;
+    }
+
+    @Override
+    public User findByUserEmail(String email) {
+        User user = entityManager.createQuery(
+                        "SELECT u from User u WHERE u.email = :email", User.class).
+                setParameter("email", email).getSingleResult();
+        return user;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        User user = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class).
+                setParameter("email", email).getSingleResult();
         return user;
     }
 }

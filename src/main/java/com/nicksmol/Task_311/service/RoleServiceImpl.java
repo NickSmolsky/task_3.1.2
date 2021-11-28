@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,11 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     public Set<Role> getRoleSet(String[] role) {
         return Arrays.stream(role).map(roleDao::getByName).collect(Collectors.toSet());
+    }
+
+    @Override
+    public List<Role> getAllRoles() {
+        return roleDao.getAllRole();
     }
 
 

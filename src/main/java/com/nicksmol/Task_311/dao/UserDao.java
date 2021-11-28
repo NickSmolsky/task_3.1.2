@@ -17,4 +17,8 @@ public interface UserDao {
 
     User findByUsername(String username);
 
+    User findByUserEmail(String email);
+
+    User findByEmail(String email);
+
 }
